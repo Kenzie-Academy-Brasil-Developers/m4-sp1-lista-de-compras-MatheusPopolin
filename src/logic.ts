@@ -143,7 +143,7 @@ export const updateListItem = (
     ...request.body,
   };
 
-  return response.status(200).json(database[indexOfList].data[indexOfItem]); //objeto atualizado
+  return response.status(200).json(database[indexOfList].data[indexOfItem]); 
 };
 
 export const deleteListItem = (
