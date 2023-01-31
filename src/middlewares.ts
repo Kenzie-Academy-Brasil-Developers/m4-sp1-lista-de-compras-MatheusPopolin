@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { database } from "./database";
 
-export const validateId = (
+export const ensureIdExist = (
   request: Request,
   response: Response,
   next: NextFunction
@@ -21,7 +21,7 @@ export const validateId = (
   next();
 };
 
-export const validateItemName = (
+export const ensureItemNameExist = (
   request: Request,
   response: Response,
   next: NextFunction
