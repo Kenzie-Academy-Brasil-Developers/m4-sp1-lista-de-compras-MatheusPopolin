@@ -1,6 +1,6 @@
 import express, { Application, json} from "express";
 import { createNewList, deleteList, deleteListItem, readAllLists, readOneList, updateListItem } from "./logic";
-import { validateId, validateItemName } from "./middlewares";
+import { ensureIdExist, ensureItemNameExist } from "./middlewares";
 
 const app: Application = express();
 app.use(json());
@@ -9,13 +9,13 @@ app.post("/purchaseList", createNewList);
 
 app.get("/purchaseList", readAllLists);
 
-app.get("/purchaseList/:id", validateId, readOneList);
+app.get("/purchaseList/:id", ensureIdExist, readOneList);
 
-app.patch("/purchaseList/:id/:itemName", validateId, validateItemName, updateListItem);
+app.patch("/purchaseList/:id/:itemName", ensureIdExist, ensureItemNameExist, updateListItem);
 
-app.delete("/purchaseList/:id/:itemName", validateId, validateItemName, deleteListItem);
+app.delete("/purchaseList/:id/:itemName", ensureIdExist, ensureItemNameExist, deleteListItem);
 
-app.delete("/purchaseList/:id", validateId, deleteList);
+app.delete("/purchaseList/:id", ensureIdExist, deleteList);
 
 const PORT: number = 3000;
 const runningMsg: string = `Server running on http://localhost:${PORT}`;
